@@ -120,3 +120,51 @@
 2025-12-17 09:17:32,680 main.py INFO Created a new User: name='Mr.Z' email='mrz@gmail.com' contact_no='02345670'
 2025-12-17 09:17:37,215 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
 2025-12-17 09:17:37,215 main.py INFO Created a new User: name='Mr.Y' email='mry@gmail.com' contact_no='02345670'
+2025-12-21 15:40:11,022 main.py INFO Initializing Database...
+2025-12-21 15:40:11,024 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-21 15:40:11,120 postgresql_db_store.py INFO Users table created or already exists.
+2025-12-21 15:40:11,160 postgresql_db_store.py INFO User created successfully with ID: 1
+2025-12-21 15:40:11,180 postgresql_db_store.py INFO User created successfully with ID: 2
+2025-12-21 15:40:11,199 postgresql_db_store.py INFO User created successfully with ID: 3
+2025-12-21 15:40:11,200 postgresql_db_store.py INFO Database initialized with sample data.
+2025-12-21 15:40:11,200 main.py INFO Database initialized successfully.
+2025-12-21 15:40:45,869 main.py INFO Creating a new User: name='Mr.Y' email='mry@gmail.com' contact_no='02345670'
+2025-12-21 15:40:45,877 postgresql_db_store.py INFO User created successfully with ID: 4
+2025-12-21 15:40:57,662 main.py INFO Creating a new User: name='Mr.Z' email='mrZ@gmail.com' contact_no='02345671'
+2025-12-21 15:40:57,680 postgresql_db_store.py INFO User created successfully with ID: 5
+2025-12-21 15:41:14,228 main.py INFO Shutting down...
+2025-12-21 15:42:03,654 main.py INFO Initializing Database...
+2025-12-21 15:42:03,657 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-21 15:42:03,688 postgresql_db_store.py INFO Users table created or already exists.
+2025-12-21 15:42:03,702 postgresql_db_store.py WARNING User with email mra@gmail.com or contact_no 12345678 already exists.
+2025-12-21 15:42:03,732 postgresql_db_store.py WARNING User with email mrb@gmail.com or contact_no 12345679 already exists.
+2025-12-21 15:42:03,748 postgresql_db_store.py WARNING User with email mrc@gmail.com or contact_no 12345671 already exists.
+2025-12-21 15:42:03,749 postgresql_db_store.py INFO Database initialized with sample data.
+2025-12-21 15:42:03,750 main.py INFO Database initialized successfully.
+2025-12-21 15:42:06,170 main.py INFO Shutting down...
+2025-12-21 16:20:36,764 main.py INFO Initializing Database...
+2025-12-21 16:20:36,765 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-21 16:20:36,842 postgresql_db_store.py INFO Users table created or already exists.
+2025-12-21 16:20:36,876 postgresql_db_store.py INFO User created successfully with ID: 1
+2025-12-21 16:20:36,917 postgresql_db_store.py INFO User created successfully with ID: 2
+2025-12-21 16:20:36,941 postgresql_db_store.py INFO User created successfully with ID: 3
+2025-12-21 16:20:36,942 postgresql_db_store.py INFO Database initialized with sample data.
+2025-12-21 16:20:36,942 main.py INFO Database initialized successfully.
+2025-12-21 16:21:20,890 main.py INFO Creating a new User: name='Mr.Z' email='mrZ@gmail.com' contact_no='02345671'
+2025-12-21 16:21:20,896 postgresql_db_store.py INFO User created successfully with ID: 4
+2025-12-21 16:21:29,239 main.py INFO Creating a new User: name='Mr.X' email='mrx@gmail.com' contact_no='02345672'
+2025-12-21 16:21:29,259 postgresql_db_store.py INFO User created successfully with ID: 5
+2025-12-21 16:21:48,546 main.py INFO Retrieving all Users
+2025-12-21 16:21:48,549 postgresql_db_store.py INFO Retrieved 5 users from database.
+2025-12-21 16:22:51,351 main.py INFO Shutting down...
+2025-12-21 16:23:02,075 main.py INFO Initializing Database...
+2025-12-21 16:23:02,076 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-21 16:23:02,108 postgresql_db_store.py INFO Users table created or already exists.
+2025-12-21 16:23:02,124 postgresql_db_store.py WARNING User with email mra@gmail.com or contact_no 12345678 already exists.
+2025-12-21 16:23:02,140 postgresql_db_store.py WARNING User with email mrb@gmail.com or contact_no 12345679 already exists.
+2025-12-21 16:23:02,156 postgresql_db_store.py WARNING User with email mrc@gmail.com or contact_no 12345671 already exists.
+2025-12-21 16:23:02,156 postgresql_db_store.py INFO Database initialized with sample data.
+2025-12-21 16:23:02,157 main.py INFO Database initialized successfully.
+2025-12-21 16:23:07,514 main.py INFO Retrieving all Users
+2025-12-21 16:23:07,518 postgresql_db_store.py INFO Retrieved 5 users from database.
+2025-12-21 16:23:27,193 main.py INFO Shutting down...
