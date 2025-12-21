@@ -1,0 +1,122 @@
+2025-12-16 14:20:20,544 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:20:29,683 main.py INFO Retrieving all Users
+2025-12-16 14:24:58,927 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:25:02,402 main.py INFO Retrieving all Users
+2025-12-16 14:31:43,104 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:31:43,741 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:31:48,102 main.py INFO Retrieving all Users
+2025-12-16 14:31:48,724 main.py INFO Retrieving all Users
+2025-12-16 14:31:52,071 main.py INFO Filtering the User by civil id no: 12345678
+2025-12-16 14:31:52,071 main.py INFO Successfully filtered: name='Mr.A' email='mra@gmail.com' contact_no='12345678'
+2025-12-16 14:32:20,428 main.py INFO Filtering the User by civil id no: 12345678
+2025-12-16 14:32:20,429 main.py INFO Successfully filtered: name='Mr.A' email='mra@gmail.com' contact_no='12345678'
+2025-12-16 14:32:20,698 main.py INFO Filtering the User by civil id no: 12345678
+2025-12-16 14:32:20,698 main.py INFO Successfully filtered: name='Mr.A' email='mra@gmail.com' contact_no='12345678'
+2025-12-16 14:32:20,850 main.py INFO Filtering the User by civil id no: 12345678
+2025-12-16 14:32:20,851 main.py INFO Successfully filtered: name='Mr.A' email='mra@gmail.com' contact_no='12345678'
+2025-12-16 14:33:13,525 main.py INFO Retrieving all Users
+2025-12-16 14:52:46,926 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:52:47,559 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:52:47,711 main.py INFO 6 changes detected
+2025-12-16 14:52:48,064 main.py INFO 1 change detected
+2025-12-16 14:52:48,421 main.py INFO 1 change detected
+2025-12-16 14:52:48,780 main.py INFO 1 change detected
+2025-12-16 14:52:49,140 main.py INFO 1 change detected
+2025-12-16 14:52:49,494 main.py INFO 1 change detected
+2025-12-16 14:52:49,852 main.py INFO 1 change detected
+2025-12-16 14:52:50,211 main.py INFO 1 change detected
+2025-12-16 14:52:50,567 main.py INFO 1 change detected
+2025-12-16 14:52:50,923 main.py INFO 1 change detected
+2025-12-16 14:52:51,283 main.py INFO 1 change detected
+2025-12-16 14:52:51,642 main.py INFO 1 change detected
+2025-12-16 14:52:51,999 main.py INFO 1 change detected
+2025-12-16 14:52:52,355 main.py INFO 1 change detected
+2025-12-16 14:52:52,718 main.py INFO 1 change detected
+2025-12-16 14:52:53,075 main.py INFO 1 change detected
+2025-12-16 14:56:25,509 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:56:26,148 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:56:26,293 main.py INFO 1 change detected
+2025-12-16 14:56:26,646 main.py INFO 1 change detected
+2025-12-16 14:56:27,003 main.py INFO 1 change detected
+2025-12-16 14:56:27,363 main.py INFO 1 change detected
+2025-12-16 14:56:27,721 main.py INFO 1 change detected
+2025-12-16 14:56:28,079 main.py INFO 1 change detected
+2025-12-16 14:56:28,440 main.py INFO 1 change detected
+2025-12-16 14:56:28,797 main.py INFO 1 change detected
+2025-12-16 14:56:29,157 main.py INFO 1 change detected
+2025-12-16 14:56:29,516 main.py INFO 1 change detected
+2025-12-16 14:56:29,875 main.py INFO 1 change detected
+2025-12-16 14:56:30,236 main.py INFO 1 change detected
+2025-12-16 14:56:30,593 main.py INFO 1 change detected
+2025-12-16 14:56:30,953 main.py INFO 1 change detected
+2025-12-16 14:56:31,310 main.py INFO 1 change detected
+2025-12-16 14:56:31,669 main.py INFO 1 change detected
+2025-12-16 14:56:32,027 main.py INFO 1 change detected
+2025-12-16 14:56:32,383 main.py INFO 1 change detected
+2025-12-16 14:56:32,742 main.py INFO 1 change detected
+2025-12-16 14:56:33,101 main.py INFO 1 change detected
+2025-12-16 14:56:33,461 main.py INFO 1 change detected
+2025-12-16 14:57:22,136 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:58:28,980 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:58:29,621 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 14:58:29,762 main.py INFO 6 changes detected
+2025-12-16 14:58:30,168 main.py INFO 1 change detected
+2025-12-16 14:58:30,523 main.py INFO 1 change detected
+2025-12-16 14:58:30,879 main.py INFO 1 change detected
+2025-12-16 14:58:31,237 main.py INFO 1 change detected
+2025-12-16 14:58:31,596 main.py INFO 1 change detected
+2025-12-16 14:58:31,956 main.py INFO 1 change detected
+2025-12-16 14:58:32,314 main.py INFO 1 change detected
+2025-12-16 14:58:32,670 main.py INFO 1 change detected
+2025-12-16 14:58:33,028 main.py INFO 1 change detected
+2025-12-16 14:58:33,388 main.py INFO 1 change detected
+2025-12-16 14:58:33,747 main.py INFO 1 change detected
+2025-12-16 14:58:34,106 main.py INFO 1 change detected
+2025-12-16 14:58:34,465 main.py INFO 1 change detected
+2025-12-16 14:58:34,824 main.py INFO 1 change detected
+2025-12-16 14:58:35,183 main.py INFO 1 change detected
+2025-12-16 14:58:35,541 main.py INFO 1 change detected
+2025-12-16 14:58:35,904 main.py INFO 1 change detected
+2025-12-16 14:58:36,264 main.py INFO 1 change detected
+2025-12-16 14:58:36,622 main.py INFO 1 change detected
+2025-12-16 14:58:36,982 main.py INFO 1 change detected
+2025-12-16 14:58:37,337 main.py INFO 1 change detected
+2025-12-16 14:58:37,696 main.py INFO 1 change detected
+2025-12-16 15:05:15,344 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:05:15,970 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:05:37,823 main.py INFO Retrieving all Users
+2025-12-16 15:05:57,371 main.py INFO Filtering the User by civil id no: 12345678
+2025-12-16 15:05:57,371 main.py INFO Successfully filtered: name='Mr.A' email='mra@gmail.com' contact_no='12345678'
+2025-12-16 15:13:00,475 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:13:01,105 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:21:10,819 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:21:11,488 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:21:21,780 main.py INFO Filtering the User by civil id no: 12345678
+2025-12-16 15:21:21,780 main.py INFO Successfully filtered: name='Mr.A' email='mra@gmail.com' contact_no='12345678'
+2025-12-16 15:55:53,415 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:55:53,419 csv_store.py INFO New CSV file ./data/records.csv created with headers.
+2025-12-16 15:55:54,069 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-16 15:56:35,162 main.py INFO Filtering the User by civil id no: 12345678
+2025-12-16 15:56:35,162 main.py INFO Successfully filtered: name='Mr.A' email='mra@gmail.com' contact_no='12345678'
+2025-12-16 15:57:33,520 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
+2025-12-16 15:57:33,521 main.py INFO Created a new User: name='Mr.Z' email='mrz@gmail.com' contact_no='02345670'
+2025-12-16 15:57:46,718 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
+2025-12-16 15:57:46,718 main.py INFO Created a new User: name='Mr.Y' email='mry@gmail.com' contact_no='02345670'
+2025-12-16 16:01:12,017 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
+2025-12-16 16:01:12,018 main.py INFO Created a new User: name='Mr.Y' email='mry@gmail.com' contact_no='02345670'
+2025-12-17 09:01:39,572 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-17 09:01:39,574 csv_store.py INFO New CSV file ./data/records.csv created with headers.
+2025-12-17 09:01:40,310 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-17 09:01:51,578 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
+2025-12-17 09:01:51,578 main.py INFO Created a new User: name='Mr.Y' email='mry@gmail.com' contact_no='02345670'
+2025-12-17 09:01:56,279 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
+2025-12-17 09:01:56,280 main.py INFO Created a new User: name='Mr.Z' email='mrz@gmail.com' contact_no='02345670'
+2025-12-17 09:16:19,393 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-17 09:16:20,071 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-17 09:17:28,311 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-17 09:17:28,330 csv_store.py INFO New CSV file ./data/records.csv created with headers.
+2025-12-17 09:17:29,018 in_memory_store.py INFO Created a temporary dict as DB with 4 users.
+2025-12-17 09:17:32,680 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
+2025-12-17 09:17:32,680 main.py INFO Created a new User: name='Mr.Z' email='mrz@gmail.com' contact_no='02345670'
+2025-12-17 09:17:37,215 csv_store.py INFO Stored user 02345670 to the file ./data/records.csv
+2025-12-17 09:17:37,215 main.py INFO Created a new User: name='Mr.Y' email='mry@gmail.com' contact_no='02345670'
