@@ -1,12 +1,13 @@
 from typing import List
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Request, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 
 from app_logger import getLogger
 from data_store import postgresql_db_store
 from dto import User
+from auth.http_basic_auth import verify_credentials
 
 
 module_logger = getLogger()
@@ -26,13 +27,13 @@ app = FastAPI(lifespan=lifespan)
 
 
 @app.get(path="/users", response_model=List[User])
-def get_all_users(db=Depends(postgresql_db_store.get_db)):
-    module_logger.info("Retrieving all Users")
+def get_all_users(db=Depends(postgresql_db_store.get_db), username: str = Depends(verify_credentials)):
+    module_logger.info(f"Retrieving all Users. Action performed by {username}")
     return postgresql_db_store.get_all_users(conn=db)
 
 
 @app.get(path="/users/{given_cno}", response_model=User)
-def get_specific_user(given_cno: str, db=Depends(postgresql_db_store.get_db)):
+def get_specific_user(given_cno: str, db=Depends(postgresql_db_store.get_db), username: str = Depends(verify_credentials)):
     module_logger.info(f"Filtering the User by civil id no: {given_cno}")
     user = postgresql_db_store.get_user_by_contact_no(given_cno, conn=db)
     if user:
