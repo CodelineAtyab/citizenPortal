@@ -1,17 +1,24 @@
+import secrets
+
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from typing import Annotated
-import secrets
+from typing import Annotated, Dict
+
+from auth.rbac import authorized_users_db
 
 
 security = HTTPBasic()
 
-# Simple in-memory user database (for demonstration only)
-fake_users_db = {
-    "osama": "osama123",
-    "maather": "maather123",
-    "shihab": "shihab123"
-}
+def allowed_roles(roles: list):
+    def is_role_allowed(user_info: Annotated[Dict[str, str], Depends(verify_credentials)]):
+        if user_info["role"] not in roles:
+            raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f'Not allowed to access this resource. Your role is {user_info["role"].value}'
+        )
+
+    return is_role_allowed
+
 
 def verify_credentials(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
     """
@@ -19,7 +26,7 @@ def verify_credentials(credentials: Annotated[HTTPBasicCredentials, Depends(secu
     Uses constant-time comparison to prevent timing attacks. 
     """
     # Check if user exists
-    if credentials.username not in fake_users_db: 
+    if credentials.username not in authorized_users_db: 
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
@@ -27,7 +34,7 @@ def verify_credentials(credentials: Annotated[HTTPBasicCredentials, Depends(secu
         )
     
     # Get the stored password
-    correct_password = fake_users_db[credentials.username]
+    correct_password = authorized_users_db[credentials.username]["password"]
     
     # Use secrets.compare_digest for secure comparison
     # if credentials.password == correct_password  (Prone to timing attack)
@@ -43,4 +50,4 @@ def verify_credentials(credentials: Annotated[HTTPBasicCredentials, Depends(secu
             headers={"WWW-Authenticate": "Basic"},
         )
     
-    return credentials.username
+    return authorized_users_db[credentials.username]
