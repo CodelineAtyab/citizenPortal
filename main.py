@@ -7,7 +7,8 @@ from fastapi.responses import JSONResponse
 from app_logger import getLogger
 from data_store import postgresql_db_store
 from dto import User
-from auth.http_basic_auth import verify_credentials
+from auth.http_basic_auth import verify_credentials, allowed_roles
+from auth.rbac import Role
 
 
 module_logger = getLogger()
@@ -27,13 +28,15 @@ app = FastAPI(lifespan=lifespan)
 
 
 @app.get(path="/users", response_model=List[User])
-def get_all_users(db=Depends(postgresql_db_store.get_db), username: str = Depends(verify_credentials)):
+def get_all_users(db=Depends(postgresql_db_store.get_db), 
+                  username: str = Depends(allowed_roles(roles=[Role.ADMIN, Role.AUDITOR]))):
     module_logger.info(f"Retrieving all Users. Action performed by {username}")
     return postgresql_db_store.get_all_users(conn=db)
 
 
 @app.get(path="/users/{given_cno}", response_model=User)
-def get_specific_user(given_cno: str, db=Depends(postgresql_db_store.get_db), username: str = Depends(verify_credentials)):
+def get_specific_user(given_cno: str, db=Depends(postgresql_db_store.get_db), 
+                      username: str = Depends(allowed_roles(roles=[Role.ADMIN, Role.AUDITOR]))):
     module_logger.info(f"Filtering the User by civil id no: {given_cno}")
     user = postgresql_db_store.get_user_by_contact_no(given_cno, conn=db)
     if user:
@@ -43,7 +46,9 @@ def get_specific_user(given_cno: str, db=Depends(postgresql_db_store.get_db), us
 
 
 @app.post(path="/users")
-def register_new_user(incoming_user_obj: User, db=Depends(postgresql_db_store.get_db)):
+def register_new_user(incoming_user_obj: User, 
+                      db=Depends(postgresql_db_store.get_db),
+                      username: str = Depends(allowed_roles(roles=[Role.ADMIN]))):
     module_logger.info(f"Creating a new User: {incoming_user_obj}")
     if postgresql_db_store.create_user(incoming_user_obj, conn=db):
         return JSONResponse(content={"msg": "Successfully Registered!"}, status_code=status.HTTP_201_CREATED)
