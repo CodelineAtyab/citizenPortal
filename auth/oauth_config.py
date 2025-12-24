@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+
+
+# Read the environment variables from .env file located in this project
+load_dotenv()
+
 """
 OAuth 2.0 / OpenID Connect Configuration for Google
 """
@@ -7,8 +14,8 @@ from starlette.config import Config
 # Google OAuth configuration
 # Get your Client ID and Client Secret from Google Cloud Console:
 # https://console.cloud.google.com/apis/credentials
-OAUTH_CLIENT_ID = "470641049682-h7l2eo4g7usad65po2as1cpq57db5uiu.apps.googleusercontent.com"
-OAUTH_CLIENT_SECRET = "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"
+OAUTH_CLIENT_ID = os.environ.get("GCP_OAUTH_CLIENT_ID")
+OAUTH_CLIENT_SECRET = os.environ.get("GCP_OAUTH_CLIENT_SECRET")
 
 # Google OAuth endpoints (standard)
 OAUTH_AUTHORIZE_URL = "https://accounts.google.com/o/oauth2/v2/auth"
@@ -17,7 +24,7 @@ OAUTH_USERINFO_URL = "https://www.googleapis.com/oauth2/v3/userinfo"
 OAUTH_REDIRECT_URI = "http://localhost:8000/auth"
 
 # Session configuration
-SESSION_SECRET_KEY = "your-secret-key-change-this-in-production"
+SESSION_SECRET_KEY = os.environ.get("APP_SESSION_SECRET_KEY")
 
 # Initialize OAuth
 oauth = OAuth()

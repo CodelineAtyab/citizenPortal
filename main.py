@@ -69,7 +69,8 @@ async def auth(request: Request):
         
         return JSONResponse(content={
             "msg": "Successfully authenticated",
-            "user": dict(user_info)
+            "user": dict(user_info),
+            "token": token
         })
     except Exception as e:
         module_logger.error(f"OAuth authentication failed: {e}")
