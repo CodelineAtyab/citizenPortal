@@ -8,9 +8,9 @@ from starlette.middleware.sessions import SessionMiddleware
 from app_logger import getLogger
 from data_store import postgresql_db_store
 from dto import User
-from auth.http_basic_auth import verify_credentials, allowed_roles
+from auth.http_basic_auth import allowed_roles
 from auth.rbac import Role
-from auth.oauth_config import oauth, get_oauth_client, SESSION_SECRET_KEY, OAUTH_REDIRECT_URI
+from auth.oauth_config import get_oauth_client, SESSION_SECRET_KEY, OAUTH_REDIRECT_URI
 
 
 module_logger = getLogger()
@@ -39,6 +39,10 @@ async def login(request: Request):
     Redirects user to the OAuth provider's authorization page.
     """
     module_logger.info("Initiating OAuth login flow")
+    
+    # Clear session to avoid state conflicts
+    request.session.clear()
+    
     client = get_oauth_client()
     redirect_uri = OAUTH_REDIRECT_URI
     return await client.authorize_redirect(request, redirect_uri)
@@ -67,11 +71,7 @@ async def auth(request: Request):
         
         module_logger.info(f"User logged in successfully: {user_info.get('email', 'unknown')}")
         
-        return JSONResponse(content={
-            "msg": "Successfully authenticated",
-            "user": dict(user_info),
-            "token": token
-        })
+        return RedirectResponse(url="/me")
     except Exception as e:
         module_logger.error(f"OAuth authentication failed: {e}")
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(e))
@@ -93,8 +93,11 @@ async def get_current_user(request: Request):
     Returns the currently logged-in user's information.
     Useful for checking authentication status.
     """
+    request.session['extra'] = [1, 2, 3, 4]
+
     user = request.session.get('user')
     token = request.session.get('token')
+    extra = request.session.get('extra ')
     
     if not user or not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
