@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
 from app_logger import getLogger
@@ -33,6 +34,9 @@ app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET_KEY)
 app.include_router(user_router)
 app.include_router(auth_router)
 app.include_router(static_router)
+
+# Mount static files at /static
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 
 if __name__ == "__main__":

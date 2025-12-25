@@ -49,7 +49,7 @@ async def auth(request: Request):
         
         module_logger.info(f"User logged in successfully: {user_info.get('email', 'unknown')}")
         
-        return RedirectResponse(url="/static")
+        return RedirectResponse(url="/")
     except Exception as e:
         module_logger.error(f"OAuth authentication failed: {e}")
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(e))

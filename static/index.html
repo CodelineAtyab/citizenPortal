@@ -1,0 +1,26 @@
+<html>
+  <head></head>
+  <body>
+    <button onclick="signInWithGoogle()">Sign In With Google</button>
+    <h2 id="loggedInName"></h2>
+    <script>
+      const authURLPrefix = `http://localhost:8000/auth`
+      signInWithGoogle = () => {
+        window.location.href = `${authURLPrefix}/login`;
+      }
+
+      showProfileInfo = () => {
+        fetch(`${authURLPrefix}/me`).then(
+          response => response.json()
+        ).then(
+          (jsonResponse) => {
+            console.log(jsonResponse);
+            const nameObj = document.getElementById("loggedInName");
+            nameObj.innerText = jsonResponse.name;
+          }
+        )
+      }
+      showProfileInfo()
+    </script>
+  </body>
+</html>
