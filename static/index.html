@@ -1,15 +1,19 @@
 <html>
   <head></head>
   <body>
-    <button onclick="signInWithGoogle()">Sign In With Google</button>
+    <button id="signInButton" onclick="signInWithGoogle()">Sign In With Google</button>
     <h2 id="loggedInName"></h2>
     <script>
       const authURLPrefix = `http://localhost:8000/auth`
-      signInWithGoogle = () => {
+      const signInWithGoogle = () => {
         window.location.href = `${authURLPrefix}/login`;
       }
 
-      showProfileInfo = () => {
+      const signOut = () => {
+        window.location.href = `${authURLPrefix}/logout`;
+      }
+
+      const showProfileInfo = () => {
         fetch(`${authURLPrefix}/me`).then(
           response => response.json()
         ).then(
@@ -20,7 +24,28 @@
           }
         )
       }
-      showProfileInfo()
+
+      const isUserAuthenticated = () => {
+        fetch(`${authURLPrefix}/me`, {method: "GET"}).then(
+          (response) => {
+            return response.json();
+          }
+        ).then(
+          (jsonResponse) => {
+            const signInButtonObj = document.getElementById("signInButton");
+            signInButtonObj.innerText = "Sign Out";
+            signInButtonObj.onclick = signInWithGoogle;
+          }
+        ).catch(
+          (err) => {
+            const signInButtonObj = document.getElementById("signInButton");
+            signInButtonObj.innerText = "Sign in with Google";
+            signInButtonObj.onclick = signOut;
+          }
+        )
+      };
+
+      isUserAuthenticated();
     </script>
   </body>
 </html>
