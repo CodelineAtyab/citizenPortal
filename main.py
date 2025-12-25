@@ -1,8 +1,9 @@
 from typing import List
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, Request, Depends, HTTPException, status
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse, HTMLResponse
 from starlette.middleware.sessions import SessionMiddleware
 
 from app_logger import getLogger
@@ -30,6 +31,18 @@ app = FastAPI(lifespan=lifespan)
 
 # Add session middleware for OAuth
 app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET_KEY)
+
+
+@app.get("/", response_class=HTMLResponse)
+async def root():
+    """
+    Serves the index.html file on the root URL.
+    """
+    index_path = Path(__file__).parent / "ui" / "index.html"
+    if index_path.exists():
+        return HTMLResponse(content=index_path.read_text(), status_code=200)
+    else:
+        raise HTTPException(status_code=404, detail="index.html not found")
 
 
 @app.get("/login")
@@ -71,7 +84,7 @@ async def auth(request: Request):
         
         module_logger.info(f"User logged in successfully: {user_info.get('email', 'unknown')}")
         
-        return RedirectResponse(url="/me")
+        return RedirectResponse(url="/")
     except Exception as e:
         module_logger.error(f"OAuth authentication failed: {e}")
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(e))

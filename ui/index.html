@@ -1,0 +1,25 @@
+<html>
+  <head></head>
+  <body>
+    <button onclick="signInWithGoogle()">Sign In With Google</button>
+    <h2 id="loggedInName"></h2>
+    <script>
+      signInWithGoogle = () => {
+        window.location.href = 'http://localhost:8000/login';
+      }
+
+      showProfileInfo = () => {
+        fetch("http://localhost:8000/me").then(
+          response => response.json()
+        ).then(
+          (jsonResponse) => {
+            console.log(jsonResponse);
+            const nameObj = document.getElementById("loggedInName");
+            nameObj.innerText = jsonResponse.name;
+          }
+        )
+      }
+      showProfileInfo()
+    </script>
+  </body>
+</html>
