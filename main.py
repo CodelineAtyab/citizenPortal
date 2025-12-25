@@ -1,8 +1,6 @@
 from contextlib import asynccontextmanager
-from pathlib import Path
 
-from fastapi import FastAPI, Request, HTTPException, status
-from fastapi.responses import JSONResponse, RedirectResponse, HTMLResponse
+from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
 
 from app_logger import getLogger
@@ -10,6 +8,7 @@ from data_store import postgresql_db_store
 from auth.oauth_config import SESSION_SECRET_KEY
 from controllers.user_controllers import router as user_router
 from controllers.auth_controller import auth_router
+from controllers.static_controllers import static_router
 
 
 module_logger = getLogger()
@@ -33,18 +32,7 @@ app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET_KEY)
 # Include routers
 app.include_router(user_router)
 app.include_router(auth_router)
-
-
-@app.get("/", response_class=HTMLResponse)
-async def root():
-    """
-    Serves the index.html file on the root URL.
-    """
-    index_path = Path(__file__).parent / "ui" / "index.html"
-    if index_path.exists():
-        return HTMLResponse(content=index_path.read_text(), status_code=200)
-    else:
-        raise HTTPException(status_code=404, detail="index.html not found")
+app.include_router(static_router)
 
 
 if __name__ == "__main__":
