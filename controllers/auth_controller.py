@@ -7,7 +7,7 @@ from auth.oauth_config import get_oauth_client, OAUTH_REDIRECT_URI
 
 module_logger = getLogger()
 
-auth_router = APIRouter(tags=["authentication"])
+auth_router = APIRouter(prefix="/auth", tags=["authentication"])
 
 
 @auth_router.get("/login")
@@ -26,7 +26,7 @@ async def login(request: Request):
     return await client.authorize_redirect(request, redirect_uri)
 
 
-@auth_router.get("/auth")
+@auth_router.get("/")
 async def auth(request: Request):
     """
     OAuth callback endpoint.

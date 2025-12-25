@@ -4,12 +4,13 @@
     <button onclick="signInWithGoogle()">Sign In With Google</button>
     <h2 id="loggedInName"></h2>
     <script>
+      const authURLPrefix = `http://localhost:8000/auth`
       signInWithGoogle = () => {
-        window.location.href = 'http://localhost:8000/login';
+        window.location.href = `${authURLPrefix}/login`;
       }
 
       showProfileInfo = () => {
-        fetch("http://localhost:8000/me").then(
+        fetch(`${authURLPrefix}/me`).then(
           response => response.json()
         ).then(
           (jsonResponse) => {
