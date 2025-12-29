@@ -16,9 +16,8 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 
 @router.get("/", response_model=List[User])
-def get_all_users(db=Depends(postgresql_db_store.get_db), 
-                  username: str = Depends(allowed_roles(roles=[Role.ADMIN, Role.AUDITOR]))):
-    module_logger.info(f"Retrieving all Users. Action performed by {username}")
+def get_all_users(db=Depends(postgresql_db_store.get_db)):
+    module_logger.info(f"Retrieving all Users.")
     return postgresql_db_store.get_all_users(conn=db)
 
 
