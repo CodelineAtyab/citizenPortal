@@ -1,46 +1,233 @@
 <html>
-  <head></head>
+  <head>
+    <title>Citizen Portal</title>
+    <style>
+      :root {
+        --accent-color: #635bff;
+        --bg-color: #f7f9fc;
+        --text-color: #3c4257;
+        --card-bg: #ffffff;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .container {
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+      }
+      .card {
+        background: var(--card-bg);
+        border-radius: 8px;
+        box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      h1, h2, h3 { margin-top: 0; }
+      
+      /* Sign In Button */
+      .google-btn {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border: 1px solid #e6ebf1;
+        border-radius: 4px;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      .google-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+      }
+      
+      /* Profile Card */
+      .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        text-align: left;
+      }
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: #e6ebf1;
+      }
+      .user-details h2 { margin-bottom: 5px; color: var(--accent-color); }
+      .user-details p { margin: 0; color: #697386; }
+      
+      .logout-btn {
+        margin-top: 20px;
+        background: none;
+        border: none;
+        color: #697386;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      /* Users Scroll Area */
+      .users-section {
+        margin-top: 40px;
+      }
+      .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 20px 5px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+      .scroll-container::-webkit-scrollbar {
+        height: 8px;
+      }
+      .scroll-container::-webkit-scrollbar-thumb {
+        background: #cfd7df;
+        border-radius: 4px;
+      }
+      .user-card {
+        flex: 0 0 200px;
+        background: var(--card-bg);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .user-card img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        background-color: #e6ebf1;
+      }
+      .user-card h4 { margin: 5px 0; font-size: 14px; }
+      .user-card span { font-size: 12px; color: #697386; }
+
+      .hidden { display: none !important; }
+    </style>
+  </head>
   <body>
-    <button id="signInButton" onclick="signInWithGoogle()">Sign In With Google</button>
-    <h2 id="loggedInName"></h2>
+    <div class="container">
+      
+      <!-- Login View -->
+      <div id="loginView" class="card hidden">
+        <h1>Welcome Back</h1>
+        <p style="color: #697386; margin-bottom: 30px;">Sign in to access your dashboard</p>
+        <button class="google-btn" onclick="signInWithGoogle()">
+          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+          Sign In With Google
+        </button>
+      </div>
+
+      <!-- Dashboard View -->
+      <div id="dashboardView" class="hidden">
+        <div class="card">
+          <div class="profile-header">
+            <img id="userImage" src="" alt="Profile" class="avatar">
+            <div class="user-details">
+              <h2 id="loggedInName"></h2>
+              <p id="loggedInEmail"></p>
+            </div>
+          </div>
+          <button class="logout-btn" onclick="signOut()">Sign Out</button>
+        </div>
+
+        <div class="users-section">
+          <h3 style="color: #697386; margin-left: 5px;">Community Members</h3>
+          <div class="scroll-container" id="usersList">
+            <!-- User cards will be injected here -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
     <script>
       const authURLPrefix = `http://localhost:8000/auth`
+      const usersURL = `http://localhost:8000/users` // Assuming this is the endpoint
+
       const signInWithGoogle = () => {
         window.location.href = `${authURLPrefix}/login`;
       }
 
       const signOut = () => {
-        window.location.href = `${authURLPrefix}/logout`;
+        fetch(`${authURLPrefix}/logout`).then(
+          (response) => {
+            if (response.status === 200) {
+              isUserAuthenticated();
+            }
+          }
+        );
       }
 
-      const showProfileInfo = () => {
-        fetch(`${authURLPrefix}/me`).then(
-          response => response.json()
-        ).then(
-          (jsonResponse) => {
-            console.log(jsonResponse);
-            const nameObj = document.getElementById("loggedInName");
-            nameObj.innerText = jsonResponse.name;
-          }
-        )
+      const renderProfile = (user) => {
+        document.getElementById("loggedInName").innerText = user.name || "User";
+        document.getElementById("loggedInEmail").innerText = user.email || "";
+        // Use a placeholder if no image is provided
+        document.getElementById("userImage").src = user.picture || "https://via.placeholder.com/80";
+      }
+
+      const fetchUsers = () => {
+        fetch(usersURL).then(res => res.json()).then(users => {
+          const container = document.getElementById("usersList");
+          container.innerHTML = ""; // Clear existing
+          
+          // Handle if response is array or object with data property
+          const userList = Array.isArray(users) ? users : (users.data || []);
+
+          userList.forEach(u => {
+            const card = document.createElement("div");
+            card.className = "user-card";
+            card.innerHTML = `
+              <img src="${u.picture || 'https://via.placeholder.com/60'}" alt="${u.name}">
+              <h4>${u.name}</h4>
+              <span>${u.email}</span>
+            `;
+            container.appendChild(card);
+          });
+        }).catch(err => console.error("Failed to fetch users", err));
       }
 
       const isUserAuthenticated = () => {
         fetch(`${authURLPrefix}/me`, {method: "GET"}).then(
           (response) => {
-            return response.json();
+            if (response.status === 200) {
+              return response.json();
+            }
+            if (response.status === 401) {
+              throw new Error("Not Authorized!");
+            }
           }
         ).then(
           (jsonResponse) => {
-            const signInButtonObj = document.getElementById("signInButton");
-            signInButtonObj.innerText = "Sign Out";
-            signInButtonObj.onclick = signInWithGoogle;
+            // User is authenticated
+            document.getElementById("loginView").classList.add("hidden");
+            document.getElementById("dashboardView").classList.remove("hidden");
+            renderProfile(jsonResponse);
+            fetchUsers();
           }
         ).catch(
           (err) => {
-            const signInButtonObj = document.getElementById("signInButton");
-            signInButtonObj.innerText = "Sign in with Google";
-            signInButtonObj.onclick = signOut;
+            // User is NOT authenticated
+            document.getElementById("loginView").classList.remove("hidden");
+            document.getElementById("dashboardView").classList.add("hidden");
           }
         )
       };
