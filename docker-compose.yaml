@@ -1,0 +1,38 @@
+services:
+  api:
+    build: .
+    ports:
+      - "9000:8000"
+    container_name: "team-d3-api-cont"
+    restart: always
+    depends_on: 
+      - db
+    networks:
+      - team-d3-net
+  
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_NON_ROOT_USER
+      - POSTGRES_NON_ROOT_PASSWORD
+    volumes:
+      - db_storage:/var/lib/postgresql/data
+      - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - team-d3-net
+  
+networks:
+  team-d3-net:
+    driver: bridge
+
+volumes:
+  db_storage: {}

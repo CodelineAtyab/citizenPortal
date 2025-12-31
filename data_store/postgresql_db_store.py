@@ -10,7 +10,7 @@ DB_CONFIG = {
     "dbname": "appdb",
     "user": "d3user",
     "password": "d3pass",
-    "host": "localhost",
+    "host": "db",
     "port": "5432"
 }
 
