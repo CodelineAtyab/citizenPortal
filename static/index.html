@@ -160,8 +160,8 @@
     </div>
 
     <script>
-      const authURLPrefix = `http://localhost:8000/auth`
-      const usersURL = `http://localhost:8000/users` // Assuming this is the endpoint
+      const authURLPrefix = `http://${window.location.host}/auth`
+      const usersURL = `http://${window.location.host}/users` // Assuming this is the endpoint
 
       const signInWithGoogle = () => {
         window.location.href = `${authURLPrefix}/login`;
