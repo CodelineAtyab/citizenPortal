@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+import asyncio
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,15 +16,40 @@ from controllers.static_controllers import static_router
 
 module_logger = getLogger()
 
+async def initialize_database_with_retry():
+    """Background task to initialize database with retries."""
+    max_retries = 10
+    retry_delay = 2  # seconds
+    
+    for attempt in range(1, max_retries + 1):
+        try:
+            postgresql_db_store.initialize_db_with_sample_data()
+            module_logger.info("Database initialized successfully.")
+            return
+        except Exception as e:
+            module_logger.warning(f"Database initialization failed (attempt {attempt}/{max_retries}): {e}")
+            if attempt < max_retries:
+                wait_time = retry_delay * (2 ** (attempt - 1))  # Exponential backoff
+                module_logger.info(f"Retrying in {wait_time} seconds...")
+                await asyncio.sleep(wait_time)
+            else:
+                module_logger.error("Database initialization failed after all retries.")
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    module_logger.info("Initializing Database...")
-    try:
-        postgresql_db_store.initialize_db_with_sample_data()
-        module_logger.info("Database initialized successfully.")
-    except Exception as e:
-        module_logger.error(f"Database initialization failed: {e}")
+    module_logger.info("Starting database initialization in background...")
+    # Start background task without awaiting it
+    task = asyncio.create_task(initialize_database_with_retry())
+    
     yield
+    
+    # Cleanup: cancel the task if still running
+    if not task.done():
+        task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            pass
     module_logger.info("Shutting down...")
 
 app = FastAPI(lifespan=lifespan)
