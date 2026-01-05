@@ -11,7 +11,8 @@ DB_CONFIG = {
     "user": "d3user",
     "password": "d3pass",
     "host": "db",
-    "port": "5432"
+    "port": "5432",
+    "connect_timeout": 5  # Timeout in seconds
 }
 
 

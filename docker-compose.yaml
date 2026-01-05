@@ -6,7 +6,8 @@ services:
     container_name: "team-d3-api-cont"
     restart: always
     depends_on: 
-      - db
+      db:
+        condition: service_healthy
     networks:
       - team-d3-net
   
