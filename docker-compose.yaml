@@ -3,6 +3,8 @@ services:
     build: .
     ports:
       - "9000:8000"
+    volumes:
+      - myapplogs:/app/logs
     container_name: "team-d3-api-cont"
     restart: always
     depends_on: 
@@ -37,3 +39,4 @@ networks:
 
 volumes:
   db_storage: {}
+  myapplogs: {}
