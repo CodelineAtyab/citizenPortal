@@ -5,6 +5,7 @@ services:
       - "9000:8000"
     volumes:
       - myapplogs:/app/logs
+    image: codelineatyab/team-d3-api:latest
     container_name: "team-d3-api-cont"
     restart: always
     depends_on: 

@@ -1,4 +1,4 @@
-from utils.transform import execute
+import utils.transform
 
 
 def test_execute_returns_required_keys():
@@ -60,7 +60,7 @@ def test_execute_returns_required_keys():
     ]
     
     # Act: Execute the transformation
-    result = execute(base_result, latest_result)
+    result = utils.transform.execute(base_result, latest_result)
     
     # Assert: Verify result is a list
     assert isinstance(result, list), "Result should be a list"
@@ -94,7 +94,7 @@ def test_execute_merges_data_correctly():
     ]
     
     # Act
-    result = execute(base_result, latest_result)
+    result = utils.transform.execute(base_result, latest_result)
     
     # Assert: Verify data was merged correctly
     assert result[0]["name"] == "Luke Skywalker"
@@ -111,7 +111,7 @@ def test_execute_with_empty_lists():
     latest_result = []
     
     # Act
-    result = execute(base_result, latest_result)
+    result = utils.transform.execute(base_result, latest_result)
     
     # Assert
     assert isinstance(result, list), "Result should be a list"
